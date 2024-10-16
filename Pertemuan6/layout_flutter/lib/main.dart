@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'Flutter Layout: Ana Bellatus Mustaqfiro 2241720095',
+      title: 'Flutter Layout',
       home: Scaffold(
           appBar: AppBar(
             title: const Text(
@@ -82,6 +82,10 @@ class MyApp extends StatelessWidget {
               titleSection,
               buttonSection,
               textSection,
+              const Text(
+                'Ana Bellatus Mustaqfiro 2241720095',
+                textAlign: TextAlign.center,
+              ),
             ],
           )),
     );
