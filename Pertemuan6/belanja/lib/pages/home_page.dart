@@ -5,10 +5,34 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<Item> items = [
-    Item(name: 'Sugar', stock: 20, price: 5000, rating: 4),
-    Item(name: 'Salt', stock: 30, price: 2000, rating: 3),
-    Item(name: 'Rice', stock: 10, price: 8000, rating: 5),
-    Item(name: 'Egg', stock: 40, price: 20000, rating: 4),
+    Item(
+        name: 'Sugar',
+        stock: 20,
+        price: 5000,
+        rating: 4,
+        desc:
+            'Sugar is a sweet food that is made from sugar cane or sugar beet. Sugar is used to sweeten food and drinks. It is also used in making cakes and sweets.'),
+    Item(
+        name: 'Salt',
+        stock: 30,
+        price: 2000,
+        rating: 3,
+        desc:
+            'Salt is a mineral that is composed primarily of sodium chloride, a chemical compound belonging to the larger class of salts; salt in its natural form as a crystalline mineral is known as rock salt or halite.'),
+    Item(
+        name: 'Rice',
+        stock: 10,
+        price: 8000,
+        rating: 5,
+        desc:
+            'Rice is the seed of the grass species Oryza sativa (Asian rice) or less commonly Oryza glaberrima (African rice). As a cereal grain, it is the most widely consumed staple food for a large part of the world\'s human population, especially in Asia.'),
+    Item(
+        name: 'Egg',
+        stock: 40,
+        price: 20000,
+        rating: 4,
+        desc:
+            'An egg is the organic vessel containing the zygote in which an embryo develops until it can survive on its own, at which point the animal hatches.'),
   ];
 
   @override
@@ -23,57 +47,87 @@ class HomePage extends StatelessWidget {
             crossAxisCount: 2,
             children: List.generate(items.length, (index) {
               final Item item = items[index];
-              return InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/item', arguments: item);
-                },
-                child: Card(
-                  child: Container(
-                    margin: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Image.asset(
-                            'images/${item.name.toLowerCase()}.jpg',
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(item.name,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        Text(
-                          'Rp. ${item.price},-',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('Stock: ${item.stock}'),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                                Text(item.rating.toString()),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              return Column(
+                children: [
+                  ItemCard(item: item),
+                ],
               );
             }),
           ),
         ));
+  }
+}
+
+class ItemCard extends StatelessWidget {
+  final Item item;
+
+  const ItemCard({super.key, required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    final heroImage = Hero(
+      tag: item.name,
+      child: Image.asset(
+        'images/${item.name.toLowerCase()}.png',
+        height: 100,
+        fit: BoxFit.cover,
+      ),
+    );
+
+    final itemName = Text(
+      item.name,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+
+    final itemPrice = Text(
+      'Rp. ${item.price},-',
+      style: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+
+    final stockInfo = Text('Stock: ${item.stock}');
+
+    final ratingRow = Row(
+      children: [
+        const Icon(
+          Icons.star,
+          color: Colors.yellow,
+        ),
+        Text(item.rating.toString()),
+      ],
+    );
+
+    final bottomRow = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        stockInfo,
+        ratingRow,
+      ],
+    );
+
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, '/item', arguments: item);
+      },
+      child: Card(
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: heroImage),
+              itemName,
+              itemPrice,
+              bottomRow,
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
