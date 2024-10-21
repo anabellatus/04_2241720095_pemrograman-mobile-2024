@@ -1,4 +1,4 @@
-# Modul 5
+# Modul 6
 
 ---
 
@@ -664,7 +664,7 @@ Widget build(BuildContext context) {
 
 ![Langkah 2](./assets/11.gif)
 
-3. s
+3. Menambahkan atribut foto produk, stok, dan rating, serta mengubah tampilan menjaadi GridView
 
 **item.dart**
 
@@ -777,3 +777,5 @@ class HomePage extends StatelessWidget {
 
 Output
 ![Hasil](./assets/12.png)
+
+4. 
