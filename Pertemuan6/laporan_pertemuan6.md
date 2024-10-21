@@ -1073,3 +1073,74 @@ class Item {
 
 Hasil
 ![Hasil](./assets/14.gif)
+
+6. Modifikasi menggunakan plugin go_router
+
+![Terminal](./assets/15.png)
+
+dependenciesnya otomatis akan ditambahkan pada pubspec.yaml
+
+```dart
+dependencies:
+  flutter:
+    //...
+  go_router: ^14.3.0
+```
+
+**main.dart**
+
+```dart
+void main() {
+  runApp(MaterialApp.router(
+    routerConfig: _router,
+  ));
+}
+
+final GoRouter _router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return HomePage();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/item',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ItemPage();
+          },
+        ),
+      ],
+    ),
+  ],
+);
+```
+
+**home_page.dart**
+
+```dart
+//...
+return InkWell(
+  onTap: () {
+    GoRouter.of(context).go('/item', extra: item);
+    },
+)
+//...
+```
+
+**item_page.dart**
+
+```dart
+class ItemPage extends StatelessWidget {
+  const ItemPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final itemArgs = GoRouterState.of(context).extra as Item;
+
+    //...
+  }
+}
+```
+
+![Hasil](./assets/16.png)

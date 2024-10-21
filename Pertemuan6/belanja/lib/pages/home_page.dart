@@ -1,5 +1,7 @@
+import 'package:belanja/main.dart';
 import 'package:belanja/models/item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -112,7 +114,7 @@ class ItemCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/item', arguments: item);
+        GoRouter.of(context).go('/item', extra: item);
       },
       child: Card(
         child: Container(
