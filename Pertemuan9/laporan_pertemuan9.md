@@ -202,7 +202,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 ```
 
 Silakan deploy pada device atau smartphone Anda dan perhatikan hasilnya! 🙂
-![Hasil](./assets/04.mp4)
+![Hasil](./assets/04.gif)
 
 ## Praktikum 2 - Membuat photo filter carousel
 
@@ -548,7 +548,7 @@ void main() {
 ```
 
 Hasil:
-![Hasil](./assets/05.mp4)
+![Hasil](./assets/05.gif)
 
 ## Tugas Praktikum
 
