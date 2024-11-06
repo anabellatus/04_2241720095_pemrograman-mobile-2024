@@ -202,6 +202,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 ```
 
 Silakan deploy pada device atau smartphone Anda dan perhatikan hasilnya! 🙂
+![Hasil](./assets/04.mp4)
 
 ## Praktikum 2 - Membuat photo filter carousel
 
@@ -547,6 +548,7 @@ void main() {
 ```
 
 Hasil:
+![Hasil](./assets/05.mp4)
 
 ## Tugas Praktikum
 
@@ -562,4 +564,4 @@ Hasil:
 >@override digunakan untuk melakukan overriding atau menimpa fungsi yang telah ada/pada parent dengan fungsi pada kelas tersebut
 
 5. Kumpulkan link commit repository GitHub Anda kepada dosen yang telah disepakati!
-Link Repo [Pertemuan 9]('https://github.com/anabellatus/04_2241720095_pemrograman-mobile-2024/tree/main/Pertemuan9')
+Link Repo [Pertemuan 9]('https://github.com/anabellatus/04_2241720095_pemrograman-mobile-2024/tree/main/Pertemuan9') https://github.com/anabellatus/04_2241720095_pemrograman-mobile-2024/tree/main/Pertemuan9
