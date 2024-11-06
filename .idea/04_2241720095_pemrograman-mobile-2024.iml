@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/hello_world/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/hello_world/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/hello_world/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/namer_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/namer_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan5/namer_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/basic_layout_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/basic_layout_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/basic_layout_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/belanja/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/belanja/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/belanja/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/layout_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/layout_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan6/layout_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan7/flutter_plugin_pubdev/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan7/flutter_plugin_pubdev/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan7/flutter_plugin_pubdev/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Pertemuan9/kamera_flutter/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
