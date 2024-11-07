@@ -967,8 +967,9 @@ Future<void> main() async {
 ```
 
 Hasil:
+![Hasil](./assets/06.gif)
 
-3. Jelaskan maksud void async pada praktikum 1?
+1. Jelaskan maksud void async pada praktikum 1?
 
 > void async pada praktikum 1 digunakan untuk membuat sebuah fungsi yang menangani operasi kamera secara asynchronous, dikarenakan saat aplikasi mengambil atau menyimpan foto, operasi tersebut mungkin membutuhkan waktu beberapa detik, dengan async aplikasi akan tetap berjalan tanpa menunggu proses tersebut selesai.
 
