@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:master_plan/models/plan.dart';
-import 'package:master_plan/models/task.dart';
-
+import 'package:master_plan/models/data_layer.dart';
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
 
@@ -40,6 +38,10 @@ class _PlanScreenState extends State<PlanScreen> {
     return ListView.builder(
       itemCount: plan.tasks.length,
       itemBuilder: (context, index) => _buildTaskTile(plan.tasks[index], index),
+      controller: scrollController,
+      keyboardDismissBehavior: Theme.of(context).platform == TargetPlatform.iOS
+          ? ScrollViewKeyboardDismissBehavior.onDrag
+          : ScrollViewKeyboardDismissBehavior.manual,
     );
   }
 
@@ -75,6 +77,12 @@ class _PlanScreenState extends State<PlanScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
