@@ -748,8 +748,11 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
 1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
 2. Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!
   ![Gambar](./assets/06.png)
+  > Diagram tersebut merupakan widget tree dari praktikum 3 yaitu dimulai dari MaterialApp dimana awal dimulainya aplikasi, kemudian masuk ke PlanProvider yang merupakan state management yang mengatur data atau logika aplikasi, kemudian PlanCreatorScreen merupakan tampilan view berisi Textfield dan ListView yang dibungkus widget Expanded. Kemudian terdapat Navigator Push yang menandakan adanya perpindahan layar/screen ke PlanScreen yang dimulai dari MaterialApp, berisi Scaffold di dalamnya terdapat Column yang memiliki ListView dibungkus oleh Expanded dan Text dibungkus oleh SafeArea
 
 3. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
    Hasil
    ![Hasil](./assets/05.gif)
+   > Pada praktikum 3 menerapkan state management pada 2 screen yaitu PlanScreen(menambahkan sebuah item plan) dan PlanCreatorScreen(menambahkan sekumpulan list plan) dengan Provider dan Notifier
 4. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke dosen yang telah disepakati !
+   Link Repo [Pertemuan 10]('https://github.com/anabellatus/04_2241720095_pemrograman-mobile-2024/tree/main/Pertemuan10')
