@@ -312,3 +312,8 @@ class _FuturePageState extends State<FuturePage> {
 **Langkah 4**
 Hasil run
 ![Hasil](./assets/09.gif)
+
+### Soal 5
+
+Jelaskan maksud kode langkah 2 tersebut!
+> pada langkah 2 tersebut dibuat fungsi async untuk mengembalikan nilai 42 dengan completer setelah waktu tunggu 5 detik, kemudian completer akan menampilkan hasilnya
