@@ -247,3 +247,8 @@ class _FuturePageState extends State<FuturePage> {
 **Langkah 4 - Run**
 Hasil
 ![Hasil](./assets/08.gif)
+
+### Soal 4
+
+Jelaskan maksud kode langkah 1 dan 2 tersebut!
+> Pada langkah satu dibuat async function untuk melakukan delay atau waktu tunggu selama 3 detik pada masing" fungsinya dan mengembalikan sebuah nilai, kemudian pada langkah 2 dibuat method count untuk melakukan pemanggilan terhadap fungsi-fungsi async tadi dan melakukan penjumlahan terhadap nilai return dari masing-masing fungsi yang kemudian ditampilkan
