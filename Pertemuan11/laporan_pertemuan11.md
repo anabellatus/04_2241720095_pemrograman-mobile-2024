@@ -317,3 +317,42 @@ Hasil run
 
 Jelaskan maksud kode langkah 2 tersebut!
 > pada langkah 2 tersebut dibuat fungsi async untuk mengembalikan nilai 42 dengan completer setelah waktu tunggu 5 detik, kemudian completer akan menampilkan hasilnya
+
+**Langkah 5 - Ganti method calculate()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  calculate() async {
+    try {
+      await Future.delayed(const Duration(seconds: 5));
+      completer.complete(42);
+    } catch (_) {
+      completer.completeError({});
+    }
+  }
+}
+```
+
+**Langkah 6 - Pindah ke onPressed()**
+**main.dart**
+
+```dart
+@override
+  Widget build(BuildContext context) {
+    //...
+    ElevatedButton(
+      child: const Text('Go'),
+      onPressed: () {
+        getNumber().then((value) {
+          setState(() {
+            result = value.toString();
+            });
+          }).catchError((e) {
+              result = 'An error occured';
+              });
+      }
+  }
+```
