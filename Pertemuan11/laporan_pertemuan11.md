@@ -89,7 +89,20 @@ class _FuturePageState extends State<FuturePage> {
 
 Tambahkan nama panggilan Anda pada title app sebagai identitas hasil pekerjaan Anda.
 
->
+> ![Soal 1](./assets/06.png)
+```dart
+class _FuturePageState extends State<FuturePage> {
+ //...
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Back from the Future Ana'),
+      ),
+    ),
+  }
+}
+```
 
 **Langkah 4 - Tambah method getData()**
 **main.dart**
