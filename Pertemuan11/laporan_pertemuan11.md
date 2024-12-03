@@ -179,3 +179,71 @@ Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
 
 Capture hasil praktikum Anda berupa GIF
 ![W11: Soal 3](./assets/05.gif)
+
+## Praktikum 2 - Menggunakan await/async untuk menghindari callbacks
+
+**Langkah 1 - Buka file main.dart**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  Future<int> returnOneAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 1;
+  }
+
+  Future<int> returnTwoAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 2;
+  }
+
+  Future<int> returnThreeAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 3;
+  }
+}
+```
+
+**Langkah 2 - Tambah method count()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+ //...
+  Future count() async {
+    int total = 0;
+    total = await returnOneAsync();
+    total += await returnTwoAsync();
+    total += await returnThreeAsync();
+    setState(() {
+      result = total.toString();
+    });
+  }
+  //...
+}
+```
+
+**Langkah 3 - Panggil count()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+@override
+  Widget build(BuildContext context) {
+    //...
+      ElevatedButton(
+        child: const Text('Go'),
+        onPressed: () {
+          count();
+          },
+        ),
+  }
+}
+```
+
+**Langkah 4 - Run**
+Hasil
+![Hasil](./assets/08.gif)
