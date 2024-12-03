@@ -356,3 +356,11 @@ class _FuturePageState extends State<FuturePage> {
       }
   }
 ```
+
+### Soal 6
+
+Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!
+> perbedaan kode langkah 2 dengan langkah 5-6 adalah, pada langkah 5-6 terdapat handling jika terjadi error pada pemanggilan calculate sehingga aplikasi tidak akan crash jika terjadi error, sedangkah pada langkah 2 tidak ada.
+>
+> Hasil
+> ![Hasil](./assets/01.png)
