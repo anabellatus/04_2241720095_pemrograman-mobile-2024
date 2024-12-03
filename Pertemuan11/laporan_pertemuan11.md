@@ -125,8 +125,25 @@ class _FuturePageState extends State<FuturePage> {
 ### Soal 2
 
 Carilah judul buku favorit Anda di Google Books, lalu ganti ID buku pada variabel path di kode tersebut.
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  String result = '';
+
+  Future<Response> getData() async {
+    const authorithy = 'www.googleapis.com';
+    const path = '/books/v1/volumes/e-ZDDwAAQBAJ';
+    Uri url = Uri.https(authorithy, path);
+    return http.get(url);
+  }
+
+  //...
+}
+```
 
 Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika menampilkan data JSON, maka Anda telah berhasil.
+![W11: Soal 2](./assets/04.png)
 
 **Langkah 5 - Tambah kode di ElevatedButton**
 **main.dart**
