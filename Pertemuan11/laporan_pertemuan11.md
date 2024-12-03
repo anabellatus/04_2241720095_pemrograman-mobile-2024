@@ -252,3 +252,63 @@ Hasil
 
 Jelaskan maksud kode langkah 1 dan 2 tersebut!
 > Pada langkah satu dibuat async function untuk melakukan delay atau waktu tunggu selama 3 detik pada masing" fungsinya dan mengembalikan sebuah nilai, kemudian pada langkah 2 dibuat method count untuk melakukan pemanggilan terhadap fungsi-fungsi async tadi dan melakukan penjumlahan terhadap nilai return dari masing-masing fungsi yang kemudian ditampilkan
+
+## Praktikum 3 - Menggunakan Completer di Future
+
+**Langkah 1 - Buka main.dart**
+**main.dart**
+
+```dart
+import 'package:async/async.dart';
+```
+
+**Langkah 2 - Tambahkan variabel dan method**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  late Completer completer;
+
+  Future getNumber() {
+    completer = Completer<int>();
+    calculate();
+    return completer.future;
+  }
+
+  Future calculate() async {
+    await Future.delayed(const Duration(seconds: 5));
+    completer.complete(42);
+  }
+  //...
+}
+```
+
+**Langkah 3 - Ganti isi kode onPressed()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+@override
+  Widget build(BuildContext context) {
+    //...
+      ElevatedButton(
+        child: const Text('Go'),
+        onPressed: () {
+          getNumber().then((value) {
+          setState(() {
+            result = value.toString();
+              });
+            });
+          }
+        ),
+        //...
+  }
+}
+```
+
+**Langkah 4**
+Hasil run
+![Hasil](./assets/09.gif)
