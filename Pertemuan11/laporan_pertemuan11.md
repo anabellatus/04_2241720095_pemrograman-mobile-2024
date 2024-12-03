@@ -175,6 +175,7 @@ class _FuturePageState extends State<FuturePage> {
 ### Soal 3
 
 Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
->
+> pada langkah tersebut substring digunakan untuk mendapatkan nilai string dari character index 0 hingga 450, pada value body yang telah diubah menjadi string yang kemudian disimpan di variabel result. Juga catchError yang digunakan untuk membuat exception ketika ada error value error nya disimpan juga di variabel result.
 
 Capture hasil praktikum Anda berupa GIF
+![W11: Soal 3](./assets/05.gif)
