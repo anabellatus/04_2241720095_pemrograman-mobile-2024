@@ -415,3 +415,8 @@ class _FuturePageState extends State<FuturePage> {
 ```
 
 **Langkah 3 - Run**
+
+### Soal 7 
+
+Capture hasil praktikum Anda berupa GIF
+![Soal 7](./assets/11.gif)
