@@ -641,3 +641,23 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 }
 ```
+
+### Soal 11
+
+Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda
+
+```dart
+class _LocationScreenState extends State<LocationScreen> {
+  //...
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location Ana'),
+      ),
+      //...
+    ),
+  }
+}
+```
