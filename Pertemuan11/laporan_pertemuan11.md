@@ -457,3 +457,54 @@ Hasil
 
 Jelaskan maksud perbedaan kode langkah 1 dan 4!
 > perbedaam kode langkah 1 dan 4 adalah kode pada langkah 1 digunakan ketika jumlah/daftar operasi asynchronous tidak diketahui di awal sehingga Future dapat ditambahkan saecara dinamis ke dalam FutureGroup sebelum di close(), juga memerlukan package tambahan yaitu async. Sementara pada langkah 4 digunakan ketika jumlah/daftar operasi asynchronous sudah diketahui di awal, saehingga tidak memerlukan deklarasi tambahan atau dependensi eksternal
+
+## Praktikum 5 - Menangani Respon Error pada Async Code
+
+**Langkah 1 - Buka file main.dart**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened!');
+  }
+  //...
+}
+```
+
+**Langkah 2 - ElevatedButton**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      ElevatedButton(
+        child: const Text('Go'),
+        onPressed: () {
+          returnError().then((value) {
+            setState(() {
+              result = 'Success';
+              });
+            }).catchError((onError) {
+                setState(() {
+                  result = onError.toString();
+                  });
+                }).whenComplete(() => print('Complete'));
+        }
+      )
+    )
+  }
+}
+```
+
+**Langkah 3 - Run**
+
+Pada bagian debug console
+![Debug console](./assets/14.png)
