@@ -420,3 +420,40 @@ class _FuturePageState extends State<FuturePage> {
 
 Capture hasil praktikum Anda berupa GIF
 ![Soal 7](./assets/11.gif)
+
+**Langkah 4 - Ganti variabel futureGroup**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  void returnFG() {
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+    
+    futures.then((List<int> value) {
+      int total = 0;
+      for (var element in value) {
+        total += element;
+      }
+      setState(() {
+        result = total.toString();
+      });
+    });
+  }
+
+  //...
+}
+```
+
+Hasil
+![Soal 8](./assets/12.gif)
+
+### Soal 8
+
+Jelaskan maksud perbedaan kode langkah 1 dan 4!
+> perbedaam kode langkah 1 dan 4 adalah kode pada langkah 1 digunakan ketika jumlah/daftar operasi asynchronous tidak diketahui di awal sehingga Future dapat ditambahkan saecara dinamis ke dalam FutureGroup sebelum di close(), juga memerlukan package tambahan yaitu async. Sementara pada langkah 4 digunakan ketika jumlah/daftar operasi asynchronous sudah diketahui di awal, saehingga tidak memerlukan deklarasi tambahan atau dependensi eksternal
