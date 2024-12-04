@@ -553,8 +553,91 @@ Panggil method handleError() tersebut di ElevatedButton,
 ```
 
 lalu run. Apa hasilnya?
-![Hasil](./assets/14.png)
+![Hasil](./assets/14.gif)
 
 Jelaskan perbedaan kode langkah 1 dan 4!
 > pada langkah 1 digunakan untuk logika yang lebih sederhana, sedangkan pada langkah 4 digunakan untuk logika yang lebih kompleks
 
+## Praktikum 6 - Menggunakan Future dengan StatefulWidget
+
+**Langkah 1 - install plugin geolocator**
+![Langkah 1](./assets/15.png)
+
+**Langkah 2 - Tambah permission GPS**
+**androidmanifest.xml**
+
+```dart
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+</manifest>
+```
+
+**Langkah 3 - Buat file geolocation.dart**
+![geolocation.dart](./assets/16.png)
+
+**Langkah 4 - Buat StatefulWidget**
+**geolocation.dart**
+
+```dart
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+}
+```
+
+**Langkah 5 - Isi kode geolocation.dart**
+**geolocation.dart**
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  String myPosition = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getPosition().then((Position myPos) {
+      myPosition =
+          'Latitude: ${myPos.latitude.toString()} - Longitude: ${myPos.longitude.toString()}';
+      setState(() {
+        myPosition = myPosition;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location'),
+      ),
+      body: Center(
+        child: Text(myPosition),
+      ),
+    );
+  }
+
+  Future<Position> getPosition() async {
+    await Geolocator.requestPermission();
+    await Geolocator.isLocationServiceEnabled();
+    Position? position = await Geolocator.getCurrentPosition();
+    return position;
+  }
+}
+```
