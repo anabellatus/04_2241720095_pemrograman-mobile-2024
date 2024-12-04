@@ -536,3 +536,25 @@ class _FuturePageState extends State<FuturePage> {
   //...
 }
 ```
+
+### Soal 10
+
+Panggil method handleError() tersebut di ElevatedButton,
+```dart
+@override
+  Widget build(BuildContext context) {
+    ElevatedButton(
+      child: const Text('Go'),
+      onPressed: () {
+        handleErrors();
+      }
+    )
+  }
+```
+
+lalu run. Apa hasilnya?
+![Hasil](./assets/14.png)
+
+Jelaskan perbedaan kode langkah 1 dan 4!
+> pada langkah 1 digunakan untuk logika yang lebih sederhana, sedangkan pada langkah 4 digunakan untuk logika yang lebih kompleks
+
