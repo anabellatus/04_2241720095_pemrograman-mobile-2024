@@ -513,3 +513,26 @@ Pada bagian debug console
 
 Capture hasil praktikum Anda berupa GIF
 ![Hasil run](./assets/13.gif)
+
+**Langkah 4 - Tambah method handleError()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  Future handleErrors() async {
+    try {
+      await returnError();
+    } catch (error) {
+      setState(() {
+        result = error.toString();
+      });
+    } finally {
+      print('Complete');
+    }
+  }
+
+  //...
+}
+```
