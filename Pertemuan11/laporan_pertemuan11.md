@@ -363,4 +363,55 @@ Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!
 > perbedaan kode langkah 2 dengan langkah 5-6 adalah, pada langkah 5-6 terdapat handling jika terjadi error pada pemanggilan calculate sehingga aplikasi tidak akan crash jika terjadi error, sedangkah pada langkah 2 tidak ada.
 >
 > Hasil
-> ![Hasil](./assets/01.png)
+> ![Hasil](./assets/10.gif)
+
+## Praktikum 4 - Memanggil Future secara paralel
+
+**Langkah 1 - Buka file main.dart**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+  //...
+
+  void returnFG() {
+    FutureGroup<int> futureGroup = FutureGroup<int>();
+    futureGroup.add(returnOneAsync());
+    futureGroup.add(returnTwoAsync());
+    futureGroup.add(returnThreeAsync());
+    futureGroup.close();
+    futureGroup.future.then((List<int> value) {
+      int total = 0;
+      for (var element in value) {
+        total += element;
+      }
+      setState(() {
+        result = total.toString();
+      });
+    });
+  }
+
+  //...
+}
+```
+
+**Langkah 2 - Edit onPressed()**
+**main.dart**
+
+```dart
+class _FuturePageState extends State<FuturePage> {
+
+@override
+  Widget build(BuildContext context) {
+    //...
+    ElevatedButton(
+      child: const Text('Go'),
+      onPressed: () {
+        returnFG();
+        }
+      )
+  }
+}
+```
+
+**Langkah 3 - Run**
