@@ -508,3 +508,8 @@ class _FuturePageState extends State<FuturePage> {
 
 Pada bagian debug console
 ![Debug console](./assets/14.png)
+
+### Soal 9
+
+Capture hasil praktikum Anda berupa GIF
+![Hasil run](./assets/13.gif)
