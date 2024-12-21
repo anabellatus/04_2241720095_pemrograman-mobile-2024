@@ -661,3 +661,58 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 }
 ```
+
+**Langkah 6 - Edit main.dart**
+**main.dart**
+
+```dart
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo Ana',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const LocationScreen(),
+    );
+  }
+}
+```
+
+**Langkah 7 Run**
+![Hasil](./assets/17.gif)
+
+**Langkah 8 - Tambah animasi loading**
+**geolocation.dart**
+
+```dart
+//...
+Widget build(BuildContext context) {
+    final myWidget =
+        myPosition == '' ? const CircularProgressIndicator() : Text(myPosition);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location Ana'),
+      ),
+      body: Center(
+        child: myWidget,
+      ),
+    );
+  }
+  //...
+```
+
+### Soal 12
+
+Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
+Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".
+
+> iya, saya mendapatkan koordinat GPS ketika dirun di browser, mengapa bisa demikian karena Geolocator pada flutter memanfaatkan Web Geolocation API bawaan yang ada pada browser sehingga aplikasi bisa mengakses informasi lokasi pengguna melalui lokasi browser.
