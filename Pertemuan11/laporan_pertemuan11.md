@@ -716,3 +716,513 @@ Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".
 
 > iya, saya mendapatkan koordinat GPS ketika dirun di browser, mengapa bisa demikian karena Geolocator pada flutter memanfaatkan Web Geolocation API bawaan yang ada pada browser sehingga aplikasi bisa mengakses informasi lokasi pengguna melalui lokasi browser.
+>![Hasil](./assets/19.png)
+
+## Praktikum 7 - Manajemen Future dengan FutureBuilder
+
+**Langkah 1 - Modifikasi method getPotition()**
+**geolocation.dart**
+
+```dart
+Future<Position> getPosition() async {
+    //...
+    await Future.delayed(const Duration(seconds: 3));
+    //...
+  }
+```
+
+**Langkah 2 - Tambah variabel**
+**geolocation.dart**
+
+```dart
+class _LocationScreenState extends State<LocationScreen> {
+  //...
+  Future<Position>? position;
+  //...
+}
+```
+
+**Langkah 3 - Tambah initState()**
+**geolocation.dart**
+
+```dart
+class _LocationScreenState extends State<LocationScreen> {
+  //...
+
+  @override
+  void initState() {
+    super.initState();
+    position = getPosition();
+  }
+}
+```
+
+**Langkah 4: Edit method build()**
+**geolocation.dart**
+
+```dart
+class _LocationScreenState extends State<LocationScreen> {
+  @override
+  //...
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location Ana'),
+      ),
+      body: Center(
+        child: FutureBuilder(
+            future: position,
+            builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return Text(snapshot.data.toString());
+              } else {
+                return const Text('');
+              }
+            }),
+      ),
+    );
+  }
+}
+```
+
+### Soal 13
+
+Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+
+> pada praktikum sebelumnya memperbarui UI secara langsung setelah mendapatkan posisi, sedangkan kode pada praktikum ini menggunakan `FutureBuilder` untuk menangani status `Future` dan memperbarui UI berdasarkan status tersebut.
+> ![W11: Soal 13](./assets/20.gif)
+
+**Langkah 5: Tambah handling error**
+**geolocation.dart**
+
+```dart
+@override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location Ana'),
+      ),
+      body: Center(
+        child: FutureBuilder(
+            future: position,
+            builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+                return Text(snapshot.data.toString());
+              } else {
+                return const Text('');
+              }
+            }),
+      ),
+    );
+  }
+```
+
+### Soal 14
+
+> Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
+> Perbedaan UI dengan langkah sebelumnya adalah, akan tampil text error  jika terjadi kesalahan dalam mendapakan lokasi setelah loading selesai. Bisa demikian karena pada langkah ini ditambahkan kode untuk menangani error.
+> ![W11: Soal 14](./assets/21.jpg)
+
+## Praktikum 8 - Navigation route dengan Future Function
+
+**Langkah 1 - Buat file baru navigation_first.dart**
+![Langkah 1](./assets/22.png)
+
+**Langkah 2 - isi kode navigation_first.dart**
+**navigation_first.dart**
+
+```dart
+class NavigationFirst extends StatefulWidget {
+  const NavigationFirst({super.key});
+
+  @override
+  State<NavigationFirst> createState() => _NavigationFirstState();
+}
+
+class _NavigationFirstState extends State<NavigationFirst> {
+  Color color = Colors.blue.shade700;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: color,
+      appBar: AppBar(
+        title: const Text('Ana Navigation First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            _navigateAndGetColor(context);
+          },
+          child: Text('Change Color'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+### Soal 15
+
+Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.
+Silakan ganti dengan warna tema favorit Anda.
+
+```dart
+class NavigationFirst extends StatefulWidget {
+  const NavigationFirst({super.key});
+
+  @override
+  State<NavigationFirst> createState() => _NavigationFirstState();
+}
+
+class _NavigationFirstState extends State<NavigationFirst> {
+  Color color = Colors.indigoAccent.shade700;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: color,
+      appBar: AppBar(
+        title: const Text('Ana Navigation First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            _navigateAndGetColor(context);
+          },
+          child: Text('Change Color'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+**Langkah 3 - Tambah method di class _NavigationFirstState**
+**navigation_first.dart**
+
+```dart
+class _NavigationFirstState extends State<NavigationFirst> {
+  Color color = Colors.indigoAccent.shade700;
+
+  Future _navigateAndGetColor(BuildContext context) async {
+    color = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NavigationSecond()),
+        ) ?? Colors.blue;
+    setState(() {});
+  }
+
+  //...
+}
+```
+
+**Langkah 4 - Buat file baru navigation_second.dart**
+![Langkah 4](./assets/23.png)
+
+**Langkah 5 - Buat class NavigationSecond dengan StatefulWidget**
+**navigation_second.dart**
+
+```dart
+class NavigationSecond extends StatefulWidget {
+  const NavigationSecond({super.key});
+
+  @override
+  State<NavigationSecond> createState() => _NavigationSecondState();
+}
+
+class _NavigationSecondState extends State<NavigationSecond> {
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+        return Scaffold(
+      appBar: AppBar(
+        title: const Text('Ana Navigation Second Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.red.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Red'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.green.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Green'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.blue.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Blue'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+**Langkah 6 - Edit main.dart**
+**main.dart**
+
+```dart
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    //...
+      home: const NavigationFirst(),
+  }
+}
+```
+
+**Langkah 8 - Run**
+![Hasil Run](./assets/24.gif)
+
+### Soal 16
+
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+  > ketika button di klik warna background pada First Screen berubah sesuai button yang di klik, bisa demikian karena ketika button change color di klik maka akan melakukan navigasi dan mendapatkan color dari Second Screen kemudian ketika button di Second Screen di klik maka akan mengirimkan warna ke halaman sebelumnya, setelah warna didapatkan First Screen mengubah warna sesuai pilihan
+
+- Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!
+  > ![W11: Soal 16](./assets/25.gif)
+
+```dart
+  class _NavigationSecondState extends State<NavigationSecond> {
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+        return Scaffold(
+      appBar: AppBar(
+        title: const Text('Ana Navigation Second Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.amberAccent.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Amber'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.deepPurple.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Purple'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                color = Colors.blueGrey.shade700;
+                Navigator.pop(context, color);
+              },
+              child: const Text('Grey'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## Praktikum 9 - Memanfaatkan async/await dengan Widget Dialog
+
+**Langkah 1 - Buat file baru navigation_dialog.dart**
+![Langkah 1](./assets/26.png)
+
+**Langkah 2 - Isi kode navigation_dialog.dart**
+**navigation_dialog.dart**
+
+```dart
+import 'package:flutter/material.dart';
+
+class NavigationDialogScreen extends StatefulWidget {
+  const NavigationDialogScreen({super.key});
+
+  @override
+  State<NavigationDialogScreen> createState() => _NavigationDialogScreenState();
+}
+
+class _NavigationDialogScreenState extends State<NavigationDialogScreen> {
+  Color color = Colors.blue.shade700;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: color,
+      appBar: AppBar(
+        title: const Text('Navigation Dialog Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Change Color'),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+}
+```
+
+**Langkah 3 - Tambah method async**
+**navigation_dialog.dart**
+
+```dart
+_showColorDialog(BuildContext context) async {
+    await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Very important question'),
+            content: const Text('Please choose a color'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Red'),
+                onPressed: () {
+                  color = Colors.red.shade700;
+                  Navigator.pop(context, color);
+                },
+              ),
+              TextButton(
+                child: const Text('Green'),
+                onPressed: () {
+                  color = Colors.green.shade700;
+                  Navigator.pop(context, color);
+                },
+              ),
+              TextButton(
+                child: const Text('Blue'),
+                onPressed: () {
+                  color = Colors.blue.shade700;
+                  Navigator.pop(context, color);
+                },
+              ),
+            ],
+          );
+        });
+    setState(() {});
+  }
+```
+
+**Langkah 4 - Panggil method di ElevatedButton**
+**navigation_dialog.dart**
+
+```dart
+class _NavigationDialogScreenState extends State<NavigationDialogScreen> {
+  //...
+
+   @override
+  Widget build(BuildContext context) {
+    //...
+
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Change Color'),
+          onPressed: () {
+            _showColorDialog(context);
+          },
+        ),
+      ),
+
+    //...
+  }
+}
+```
+
+**Langkah 5 - Edit main.dart**
+**main.dart**
+
+```dart
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  //...
+      home: const NavigationDialogScreen(),
+    //...
+  }
+```
+
+**Langkah 6 - Run**
+![Hasil](./assets/27.gif)
+
+## Soal 17
+
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+  > terjadi perubahan warna background pada halaman utama sesuai dengan warna button yang diklik, bisa demikian karena pada saat button change color diklik akan menampilkan dialog, kemudian dialog tersebut memiliki 3 button yang jika diklik akan kembali ke halaman utama dan mengirimkan data warna sesuai warna yang diklik sehingga variabel color diinisialisasikan ulang sesuai dengan warna yang dikirim.
+
+- Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
+  **navigation_dialog.dart**
+
+```dart
+  class _NavigationDialogScreenState extends State<NavigationDialogScreen> {
+  //...
+
+  _showColorDialog(BuildContext context) async {
+    await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Very important question'),
+            content: const Text('Please choose a color'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Orange'),
+                onPressed: () {
+                  color = const Color.fromARGB(255, 238, 176, 60);
+                  Navigator.pop(context, color);
+                },
+              ),
+              TextButton(
+                child: const Text('Purple'),
+                onPressed: () {
+                  color = const Color.fromARGB(255, 145, 115, 250);
+                  Navigator.pop(context, color);
+                },
+              ),
+              TextButton(
+                child: const Text('Pink'),
+                onPressed: () {
+                  color = const Color.fromARGB(255, 243, 92, 122);
+                  Navigator.pop(context, color);
+                },
+              ),
+            ],
+          );
+        });
+    setState(() {});
+  }
+}
+```
+
+![W11: Soal 17](./assets/28.gif)
